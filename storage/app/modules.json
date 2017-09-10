@@ -1,0 +1,12 @@
+{
+    "Auth": {
+        "basename": "Auth",
+        "name": "Auth",
+        "slug": "auth",
+        "version": "1.0",
+        "description": "This is the description for the Auth module.",
+        "id": 4175343705,
+        "enabled": true,
+        "order": 9001
+    }
+}
