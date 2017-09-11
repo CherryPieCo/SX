@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewSpecialistRegisteredNotify extends Mailable
+class ResetPasswordEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class NewSpecialistRegisteredNotify extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.specialist_registered');
+        return $this->markdown('emails.reset_password');
     }
 }

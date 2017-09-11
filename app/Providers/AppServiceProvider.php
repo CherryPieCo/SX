@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('is_active', function ($attribute, $value, $parameters, $validator) {
+            return User::where($parameters[0], $value)->active()->count();
+        });
     }
 
     /**

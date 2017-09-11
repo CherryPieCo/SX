@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\v1\Auth\Http\Requests;
+namespace App\Modules\Auth\Http\Requests;
 
 use App\Http\Requests\ApiRequest;
 

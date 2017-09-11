@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,12 +12,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        App\Modules\Auth\Events\ClientRegistered::class => [
-            App\Modules\Auth\Listeners\NotifyAdminAboutNewClient::class,
+        \App\Modules\Auth\Events\ClientRegistered::class => [
+            \App\Modules\Auth\Listeners\NotifyAdminAboutNewClient::class,
         ],
-        App\Modules\Auth\Events\SpecialistRegistered::class => [
-            App\Modules\Auth\Listeners\NotifyAdminAboutNewSpecialist::class,
+        \App\Modules\Auth\Events\SpecialistRegistered::class => [
+            \App\Modules\Auth\Listeners\NotifyAdminAboutNewSpecialist::class,
         ],
+        \App\Modules\Auth\Events\Restore\ForgotPassword::class => [
+            \App\Modules\Auth\Listeners\SendResetPasswordEmail::class,
+        ]
     ];
 
     /**

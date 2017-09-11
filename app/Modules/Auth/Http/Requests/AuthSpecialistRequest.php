@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\v1\Auth\Http\Requests;
+namespace App\Modules\Auth\Http\Requests;
 
 use App\Http\Requests\ApiRequest;
 
-class AuthClientRequest extends ApiRequest
+class AuthSpecialistRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class AuthClientRequest extends ApiRequest
     public function rules()
     {
         return [
-            'phone' => 'required|string',
-            'password' => 'required|string',
+            // TODO:
+            'code' => 'required|string|is_active:code',
         ];
     }
 }

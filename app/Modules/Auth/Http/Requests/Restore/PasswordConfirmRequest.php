@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Auth\Http\Requests;
+namespace App\Modules\Auth\Http\Requests\Restore;
 
 use App\Http\Requests\ApiRequest;
 
-class AuthClientRequest extends ApiRequest
+class PasswordConfirmRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class AuthClientRequest extends ApiRequest
     public function rules()
     {
         return [
-            'phone' => 'required|exists:users,phone|is_active:phone',
-            'password' => 'required|string',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+            'password_reset_token' => 'required|exists:users,password_reset_token',
         ];
     }
 }

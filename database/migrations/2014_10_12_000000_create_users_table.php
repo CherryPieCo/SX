@@ -26,7 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->unique();
             $table->string('phone_extra')->nullable();
-            
+
+            $table->string('password_reset_token')->unique()->nullable();
+
             $table->string('certificate_image')->nullable();
             $table->string('diploma_image')->nullable();
             

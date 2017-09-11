@@ -167,6 +167,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,
         Yaro\ApiDocs\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -235,6 +236,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'ApiDocs' => Yaro\ApiDocs\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

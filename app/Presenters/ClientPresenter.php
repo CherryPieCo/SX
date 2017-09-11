@@ -8,6 +8,8 @@ class ClientPresenter extends AbstractPresenter
 {
     
     protected $arrayable = [
+        'id',
+        'jwt_token',
         'name',
         'patronymic',
         'surname',

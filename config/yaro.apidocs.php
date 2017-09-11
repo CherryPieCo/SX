@@ -16,9 +16,10 @@ return [
      *  - Foo
      */
     'disabled_namespaces' => [
-        //'App', 
-        //'Http',
-        //'Controllers',
+        'App',
+        'Modules',
+        'Http',
+        'Controllers',
     ],
     
     /**

@@ -39,7 +39,7 @@ class ApiRequest extends FormRequest
     public function response(array $errors)
     {
         if ($this->ajax() || $this->wantsJson()) {
-            return new JsonResponse(['error' => ['message' => trans('api_general.validation_errors')], 'validation' => $errors], 422);
+            return new JsonResponse(['error' => ['message' => trans('api.validation_errors')], 'validation' => $errors], 422);
         }
 
         return $this->redirector->to($this->getRedirectUrl())
@@ -53,7 +53,7 @@ class ApiRequest extends FormRequest
     public function forbiddenResponse()
     {
         if ($this->ajax() || $this->wantsJson()) {
-            return new JsonResponse(['errors' => ['message' => trans('api_general.forbidden_response')], 'error' => true, 'message' => trans('api_general.need_authorize')], 403);
+            return new JsonResponse(['errors' => ['message' => trans('api.forbidden_response')], 'error' => true, 'message' => trans('api_general.need_authorize')], 403);
         }
 
         return parent::forbiddenResponse();

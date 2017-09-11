@@ -2,18 +2,30 @@
 
 namespace App\Modules\Auth\Http\Controllers;
 
+use App\Presenters\SpecialistPresenter;
 use App\User;
 use App\Http\Controllers\ApiController;
 use App\Modules\Auth\Events\ClientRegistered;
 use App\Modules\Auth\Events\SpecialistRegistered;
-use App\Modules\Auth\Http\Requsts\RegisterClientRequest;
-use App\Modules\Auth\Http\Requsts\RegisterSpecialistRequest;
+use App\Modules\Auth\Http\Requests\RegisterClientRequest;
+use App\Modules\Auth\Http\Requests\RegisterSpecialistRequest;
 
 class RegistrationController extends ApiController
 {
     
     /**
      * Register new client account.
+     *
+     * @param string $name
+     * @param string $patronymic
+     * @param string $surname
+     * @param string $salon_title
+     * @param string $city
+     * @param string $address
+     * @param string $phone
+     * @param string $phone_extra
+     * @param string $email
+     * @param string $certificate_image
      */
     public function client(RegisterClientRequest $request)
     {
@@ -29,7 +41,7 @@ class RegistrationController extends ApiController
         $user->phone       = $request->get('phone');
         $user->phone_extra = $request->get('phone_extra');
         $user->email       = $request->get('email');
-        //TODO: image
+        $user->certificate_image = $request->file('certificate_image');
         
         $user->save();
         
@@ -40,6 +52,10 @@ class RegistrationController extends ApiController
     
     /**
      * Register new specialist account.
+     *
+     * @param string $phone
+     * @param string $email
+     * @param string $diploma_image
      */
     public function specialist(RegisterSpecialistRequest $request)
     {
@@ -48,10 +64,10 @@ class RegistrationController extends ApiController
         $user->status = User::STATUS_INACTIVE;
         $user->phone  = $request->get('phone');
         $user->email  = $request->get('email');
-        //TODO: image
+        $user->diploma_image = $request->file('diploma_image');
         
         $user->save();
-        
+
         event(new SpecialistRegistered($user));
         
         $this->success(compact('user'));
