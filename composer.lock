@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "320e47a85467fbc3c54e2e5369df61e0",
+    "content-hash": "1364a766aad81ccb585d6d39545b999e",
     "packages": [
         {
             "name": "caffeinated/modules",
@@ -2278,6 +2278,48 @@
                 "laravel"
             ],
             "time": "2017-09-10T09:49:15+00:00"
+        },
+        {
+            "name": "yaro/presenter",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Cherry-Pie/Presenter.git",
+                "reference": "df57217bf6d3a807ded33b0a51e77858ddc53fb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Cherry-Pie/Presenter/zipball/df57217bf6d3a807ded33b0a51e77858ddc53fb0",
+                "reference": "df57217bf6d3a807ded33b0a51e77858ddc53fb0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yaro\\Presenter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yaro",
+                    "email": "12fcv4@gmail.com"
+                }
+            ],
+            "description": "Eloquent models or arrays presenter for Laravel 5",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "model",
+                "presenter"
+            ],
+            "time": "2017-09-11T09:55:27+00:00"
         }
     ],
     "packages-dev": [

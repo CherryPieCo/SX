@@ -13,8 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        App\Modules\Auth\Events\ClientRegistered::class => [
+            App\Modules\Auth\Listeners\NotifyAdminAboutNewClient::class,
+        ],
+        App\Modules\Auth\Events\SpecialistRegistered::class => [
+            App\Modules\Auth\Listeners\NotifyAdminAboutNewSpecialist::class,
         ],
     ];
 

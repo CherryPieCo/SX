@@ -13,13 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth', 'middleware' => ['api_auth_skip']], function () {
+    
+    Route::get('/', function(){
+        die('hey');
+    });
     
     Route::group(['prefix' => 'registration'], function () {
+        Route::post('client', 'RegistrationController@client');
+        Route::post('specialist', 'RegistrationController@specialist');
+    });
     
-        Route::post('client', 'RegistrationController@registerClient');
-        Route::post('specialist', 'RegistrationController@registerSpecialist');
-        
+    Route::group(['prefix' => 'authentication'], function () {
+        Route::post('client', 'AuthenticationController@client');
+        Route::post('specialist', 'AuthenticationController@specialist');
     });
     
 });
