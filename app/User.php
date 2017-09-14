@@ -26,12 +26,6 @@ class User extends Authenticatable
      */
     protected $fillable = [];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [];
 
     public function toArray()
     {

@@ -8,5 +8,15 @@
         "id": 4175343705,
         "enabled": true,
         "order": 9001
+    },
+    "Shop": {
+        "basename": "Shop",
+        "name": "Shop",
+        "slug": "shop",
+        "version": "1.0",
+        "description": "This is the description for the Shop module.",
+        "id": 2892647586,
+        "enabled": true,
+        "order": 9001
     }
 }
