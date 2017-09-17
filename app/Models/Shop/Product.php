@@ -42,4 +42,11 @@ class Product extends Model
     {
         return $this->status == self::STATUS_ACTIVE;
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class)->orderBy('created_at', 'desc');
+    }
+
+
 }
