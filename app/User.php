@@ -12,16 +12,18 @@ use Image;
 class User extends Authenticatable
 {
     use PresenterTrait;
-    
-    const TYPE_CLIENT     = 'client';
+
+    const TYPE_CLIENT = 'client';
     const TYPE_SPECIALIST = 'specialist';
-    
-    const STATUS_ACTIVE   = 'active';
+
+    const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
 
     protected $table = 'users';
 
     protected $fillable = [];
+
+    private static $carts = [];
 
     public function toArray()
     {
@@ -47,10 +49,10 @@ class User extends Authenticatable
      */
     public function setCertificateImageAttribute($image)
     {
-        $filename = $image->hashName() .'.'. $image->getClientOriginalExtension();
+        $filename = $image->hashName() . '.' . $image->getClientOriginalExtension();
 
         $destinationPath = storage_path('/certificate_images');
-        Image::make($image)->save($destinationPath .'/'. $filename);
+        Image::make($image)->save($destinationPath . '/' . $filename);
 
         $this->attributes['certificate_image'] = $filename;
     }
@@ -60,10 +62,10 @@ class User extends Authenticatable
      */
     public function setDiplomaImageAttribute($image)
     {
-        $filename = $image->hashName() .'.'. $image->getClientOriginalExtension();
+        $filename = $image->hashName() . '.' . $image->getClientOriginalExtension();
 
         $destinationPath = storage_path('/diploma_images');
-        Image::make($image)->save($destinationPath .'/'. $filename);
+        Image::make($image)->save($destinationPath . '/' . $filename);
 
         $this->attributes['diploma_image'] = $filename;
     }
@@ -109,4 +111,23 @@ class User extends Authenticatable
     {
         return $this->status == self::STATUS_ACTIVE;
     }
+
+    public function cart(string $instance = 'default')
+    {
+        if (isset(self::$carts[$instance])) {
+            return self::$carts[$instance];
+        }
+
+        $cart = Cart::where('instance', $instance)->first();
+        if (!$cart) {
+            $cart = Cart::create([
+                'user_id' => $this->id,
+                'instance' => $instance,
+                'products' => json_encode([]),
+            ]);
+        }
+
+        return $cart;
+    }
+
 }

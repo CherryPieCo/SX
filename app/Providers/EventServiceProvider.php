@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         \App\Modules\Auth\Events\Restore\ForgotPassword::class => [
             \App\Modules\Auth\Listeners\SendResetPasswordEmail::class,
-        ]
+        ],
     ];
 
     /**
