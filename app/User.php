@@ -19,13 +19,9 @@ class User extends Authenticatable
     const STATUS_ACTIVE   = 'active';
     const STATUS_INACTIVE = 'inactive';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [];
+    protected $table = 'users';
 
+    protected $fillable = [];
 
     public function toArray()
     {

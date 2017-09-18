@@ -17,11 +17,8 @@ class Product extends Model
 
     protected $presenter = ProductPresenter::class;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'products';
+
     protected $fillable = [
         'sku',
         'title',

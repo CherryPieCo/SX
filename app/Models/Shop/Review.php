@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
+use App\Presenters\ProductReviewPresenter;
 use Yaro\Presenter\PresenterTrait;
-use App\Presenters\ProductPresenter;
-use JWTAuth;
-use Image;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -17,11 +15,8 @@ class Review extends Model
 
     protected $presenter = ProductReviewPresenter::class;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'product_reviews';
+
     protected $fillable = [
         'full_name',
         'description',
@@ -35,5 +30,11 @@ class Review extends Model
     public function isActive()
     {
         return $this->status == self::STATUS_ACTIVE;
+    }
+
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
     }
 }

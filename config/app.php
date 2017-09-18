@@ -169,6 +169,8 @@ return [
         Yaro\ApiDocs\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -237,6 +239,8 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'ApiDocs' => Yaro\ApiDocs\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 
