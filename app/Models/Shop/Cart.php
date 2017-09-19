@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shop;
 
+use App\Models\Shop\Cart\CartItem;
 use Yaro\Presenter\PresenterTrait;
 use App\Presenters\ProductPresenter;
 use JWTAuth;
@@ -52,19 +53,27 @@ class Cart extends Model
 
     public function getProductsAttribute($value)
     {
-        $collection = collect([]);
+        $collection = [];
 
-        $ids = array_keys(json_decode($value, true));
-        if ($ids) {
-            $collection = Product::wereIn('id', $ids)->get();
+        $products = json_decode($value, true);
+        foreach ($products as $id => $qty) {
+            $product = Product::active()->where('id', $id)->first();
+            if ($product) {
+                $collection[] = new CartItem($product, $product->sale_price, $qty);
+            }
         }
 
-        return $collection;
+        return collect($collection);
     } // end products
 
     public function total()
     {
-        return $this->products->sum('sale_price');
+        $sum = 0;
+        foreach ($this->products as $cartItem) {
+            $sum += $cartItem->total();
+        }
+
+        return $sum;
     }
 
 

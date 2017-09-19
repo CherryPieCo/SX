@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Shop\Http\Requests;
+namespace App\Modules\Shop\Http\Requests\Review;
 
 use App\Http\Requests\ApiRequest;
 
-class ProductRequest extends ApiRequest
+class ListRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

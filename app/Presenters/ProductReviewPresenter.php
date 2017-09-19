@@ -10,6 +10,7 @@ class ProductReviewPresenter extends AbstractPresenter
     protected $arrayable = [
         'full_name',
         'description',
+        'created_at',
     ];
     
 }

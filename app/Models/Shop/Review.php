@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shop;
 
 use App\Presenters\ProductReviewPresenter;
 use Yaro\Presenter\PresenterTrait;
@@ -10,31 +10,18 @@ class Review extends Model
 {
     use PresenterTrait;
 
-    const STATUS_ACTIVE   = 'active';
-    const STATUS_INACTIVE = 'inactive';
-
     protected $presenter = ProductReviewPresenter::class;
 
     protected $table = 'product_reviews';
 
     protected $fillable = [
+        'product_id',
         'full_name',
         'description',
     ];
 
-    public function scopeActive($query)
-    {
-        return $query->where('status', self::STATUS_ACTIVE);
-    }
-
-    public function isActive()
-    {
-        return $this->status == self::STATUS_ACTIVE;
-    }
-
-
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

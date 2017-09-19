@@ -9,7 +9,7 @@ use App\Modules\Shop\Http\Requests\ProductRequest;
 use App\Modules\Shop\Http\Requests\Review\ListRequest;
 use App\Modules\Shop\Http\Requests\Review\SaveRequest;
 
-class ProductController extends ApiController
+class FavouriteListController extends ApiController
 {
 
     /**
@@ -25,9 +25,9 @@ class ProductController extends ApiController
     }
 
     /**
-     * Get product reviews.
+     * Get fav products.
      */
-    public function getReviews($idProduct, ListRequest $request)
+    public function getList($idProduct, ListRequest $request)
     {
         $reviews = Product::find($idProduct)->reviews;
 
@@ -36,9 +36,23 @@ class ProductController extends ApiController
 
 
     /**
-     * Save new review.
+     * Add fav product.
      */
-    public function saveReview($idProduct, SaveRequest $request)
+    public function add($idProduct, SaveRequest $request)
+    {
+        $review = Review::create([
+            'product_id'  => $idProduct,
+            'full_name'   => $request->get('full_name'),
+            'description' => $request->get('description'),
+        ]);
+
+        return $this->success(compact('review'));
+    }
+
+    /**
+     * Remove fav product.
+     */
+    public function remove($idProduct, SaveRequest $request)
     {
         $review = Review::create([
             'product_id'  => $idProduct,

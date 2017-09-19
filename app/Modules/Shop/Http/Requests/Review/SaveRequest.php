@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Shop\Http\Requests;
+namespace App\Modules\Shop\Http\Requests\Review;
 
 use App\Http\Requests\ApiRequest;
 
-class ProductRequest extends ApiRequest
+class SaveRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class ProductRequest extends ApiRequest
     public function rules()
     {
         return [
-            'product_id' => 'required|exists:products,id',
+            'product_id'  => 'required|exists:products,id',
+            'full_name'   => 'required',
+            'description' => 'required',
         ];
     }
 

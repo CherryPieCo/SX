@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Shop\Product;
 use App\Presenters\SpecialistPresenter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Yaro\Presenter\PresenterTrait;
@@ -128,6 +129,11 @@ class User extends Authenticatable
         }
 
         return $cart;
+    }
+
+    public function favourites()
+    {
+        return $this->belongsToMany(Product::class, 'user_favourite_products');
     }
 
 }

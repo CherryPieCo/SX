@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shop;
 
 use Yaro\Presenter\PresenterTrait;
 use App\Presenters\ProductPresenter;
