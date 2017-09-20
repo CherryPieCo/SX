@@ -168,6 +168,8 @@ return [
         Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,
         Yaro\ApiDocs\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Backpack\Base\BaseServiceProvider::class,
+        Backpack\CRUD\CrudServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -1,4 +1,14 @@
 {
+    "Admin": {
+        "basename": "Admin",
+        "name": "Admin",
+        "slug": "admin",
+        "version": "1.0",
+        "description": "This is the description for the Admin module.",
+        "id": 2282622326,
+        "enabled": true,
+        "order": 9001
+    },
     "Auth": {
         "basename": "Auth",
         "name": "Auth",

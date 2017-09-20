@@ -19,15 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('patronymic')->nullable();
             $table->string('surname')->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 40)->unique();
             $table->string('password')->nullable();
             $table->string('salon_title')->nullable();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
-            $table->string('phone')->unique();
+            $table->string('phone', 22)->unique();
             $table->string('phone_extra')->nullable();
 
-            $table->string('password_reset_token')->unique()->nullable();
+            $table->string('password_reset_token', 16)->unique()->nullable();
 
             $table->string('certificate_image')->nullable();
             $table->string('diploma_image')->nullable();

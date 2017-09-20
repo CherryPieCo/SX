@@ -24,8 +24,8 @@ class RegisterSpecialistRequest extends ApiRequest
     public function rules()
     {
         return [
-            'phone' => 'required|string',
-            'email' => 'required|email',
+            'phone' => 'required|unique:users,phone',
+            'email' => 'required|email|unique:users,email',
             'diploma_image' => 'required|image',
         ];
     }

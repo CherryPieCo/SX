@@ -12,10 +12,10 @@ Route::group(['prefix' => 'shop'], function() {
     });
 
 
-    Route::group(['prefix' => 'basket/{product_id}'], function() {
-        Route::get('increase', 'BasketController@increase');
-        Route::get('decrease', 'BasketController@decrease');
-        Route::get('remove', 'BasketController@remove');
+    Route::group(['prefix' => 'cart/{product_id}'], function() {
+        Route::get('increase', 'CartController@increase');
+        Route::get('decrease', 'CartController@decrease');
+        Route::get('remove', 'CartController@remove');
     });
 
 });

@@ -3,63 +3,44 @@
 namespace App\Modules\Shop\Http\Controllers;
 
 use App\Http\Controllers\ApiController;
-use App\Models\Product;
-use App\Models\Review;
-use App\Modules\Shop\Http\Requests\ProductRequest;
-use App\Modules\Shop\Http\Requests\Review\ListRequest;
-use App\Modules\Shop\Http\Requests\Review\SaveRequest;
+use App\Modules\Shop\Http\Requests\Favourites\AddRequest;
+use App\Modules\Shop\Http\Requests\Favourites\RemoveRequest;
 
 class FavouriteListController extends ApiController
 {
 
     /**
-     * Get single product.
-     *
-     * @param int $offset
-     */
-    public function product($id, ProductRequest $request)
-    {
-        $product = Product::active()->find($id);
-
-        return $this->success(compact('product'));
-    }
-
-    /**
      * Get fav products.
      */
-    public function getList($idProduct, ListRequest $request)
+    public function getList()
     {
-        $reviews = Product::find($idProduct)->reviews;
+        $favourites = auth()->user()->favourites;
 
-        return $this->success(compact('reviews'));
+        return $this->success(compact('favourites'));
     }
 
 
     /**
      * Add fav product.
      */
-    public function add($idProduct, SaveRequest $request)
+    public function add($idProduct, AddRequest $request)
     {
-        $review = Review::create([
-            'product_id'  => $idProduct,
-            'full_name'   => $request->get('full_name'),
-            'description' => $request->get('description'),
-        ]);
+        $user = auth()->user();
+        $user->favourites()->attach($idProduct);
+        $favourites = $user->favourites;
 
-        return $this->success(compact('review'));
+        return $this->success(compact('favourites'));
     }
 
     /**
      * Remove fav product.
      */
-    public function remove($idProduct, SaveRequest $request)
+    public function remove($idProduct, RemoveRequest $request)
     {
-        $review = Review::create([
-            'product_id'  => $idProduct,
-            'full_name'   => $request->get('full_name'),
-            'description' => $request->get('description'),
-        ]);
+        $user = auth()->user();
+        $user->favourites()->detach($idProduct);
+        $favourites = $user->favourites;
 
-        return $this->success(compact('review'));
+        return $this->success(compact('favourites'));
     }
 }

@@ -25,7 +25,7 @@ class RegistrationController extends ApiController
      * @param string $phone
      * @param string $phone_extra
      * @param string $email
-     * @param string $certificate_image
+     * @param file   $certificate_image
      */
     public function client(RegisterClientRequest $request)
     {
@@ -47,7 +47,7 @@ class RegistrationController extends ApiController
         
         event(new ClientRegistered($user));
         
-        $this->success(compact('user'));
+        return $this->success(compact('user'));
     }
     
     /**
@@ -55,7 +55,7 @@ class RegistrationController extends ApiController
      *
      * @param string $phone
      * @param string $email
-     * @param string $diploma_image
+     * @param file   $diploma_image
      */
     public function specialist(RegisterSpecialistRequest $request)
     {
@@ -69,8 +69,8 @@ class RegistrationController extends ApiController
         $user->save();
 
         event(new SpecialistRegistered($user));
-        
-        $this->success(compact('user'));
+
+        return $this->success(compact('user'));
     }
     
 }

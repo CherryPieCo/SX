@@ -18,7 +18,7 @@ class CreateCartTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->text('product_ids');
-            $table->string('instance')->unique();
+            $table->string('instance', 24);
 
             $table->timestamps();
         });

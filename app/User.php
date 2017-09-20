@@ -9,8 +9,9 @@ use Yaro\Presenter\PresenterTrait;
 use App\Presenters\ClientPresenter;
 use JWTAuth;
 use Image;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use PresenterTrait;
 
@@ -50,10 +51,9 @@ class User extends Authenticatable
      */
     public function setCertificateImageAttribute($image)
     {
-        $filename = $image->hashName() . '.' . $image->getClientOriginalExtension();
+        $filename = $image->hashName();
 
-        $destinationPath = storage_path('/certificate_images');
-        Image::make($image)->save($destinationPath . '/' . $filename);
+        Image::make($image)->save(storage_path('certificate_images') . DIRECTORY_SEPARATOR . $filename);
 
         $this->attributes['certificate_image'] = $filename;
     }
@@ -63,10 +63,9 @@ class User extends Authenticatable
      */
     public function setDiplomaImageAttribute($image)
     {
-        $filename = $image->hashName() . '.' . $image->getClientOriginalExtension();
+        $filename = $image->hashName();
 
-        $destinationPath = storage_path('/diploma_images');
-        Image::make($image)->save($destinationPath . '/' . $filename);
+        Image::make($image)->save(storage_path('diploma_images') . DIRECTORY_SEPARATOR . $filename);
 
         $this->attributes['diploma_image'] = $filename;
     }
@@ -136,4 +135,23 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'user_favourite_products');
     }
 
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return 'id';
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

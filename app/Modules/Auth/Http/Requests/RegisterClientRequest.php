@@ -30,9 +30,9 @@ class RegisterClientRequest extends ApiRequest
             'salon_title' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|unique:users,phone',
             'phone_extra' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'certificate_image' => 'required|image',
         ];
     }
