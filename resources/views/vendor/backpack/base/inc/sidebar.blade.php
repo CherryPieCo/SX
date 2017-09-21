@@ -21,6 +21,10 @@
           <!-- ================================================ -->
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
+          <li class="header">Users}</li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/clients') }}"><i class="fa fa-users"></i> <span>Clients</span></a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/specialists') }}"><i class="fa fa-users"></i> <span>Specialists</span></a></li>
+
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>

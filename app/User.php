@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Shop\Product;
 use App\Presenters\SpecialistPresenter;
+use Backpack\CRUD\CrudTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Yaro\Presenter\PresenterTrait;
 use App\Presenters\ClientPresenter;
@@ -13,6 +14,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+
+    use CrudTrait;
     use PresenterTrait;
 
     const TYPE_CLIENT = 'client';
@@ -68,6 +71,24 @@ class User extends Authenticatable implements JWTSubject
         Image::make($image)->save(storage_path('diploma_images') . DIRECTORY_SEPARATOR . $filename);
 
         $this->attributes['diploma_image'] = $filename;
+    }
+
+    public function getCertificateImageBase64Attribute($value)
+    {
+        $path = storage_path('certificate_images') . DIRECTORY_SEPARATOR . $this->certificate_image;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
+
+    public function getDiplomaImageBase64Attribute($value)
+    {
+        $path = storage_path('diploma_images') . DIRECTORY_SEPARATOR . $this->diploma_image;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
 
     /**

@@ -40,6 +40,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\CORS::class,
             \App\Http\Middleware\JwtAuthenticate::class,
         ],
+
+        'admin' => [
+            \App\Modules\Admin\Http\Middleware\Admin::class,
+        ]
     ];
 
     /**
