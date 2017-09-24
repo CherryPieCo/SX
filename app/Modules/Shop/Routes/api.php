@@ -13,9 +13,12 @@ Route::group(['prefix' => 'shop'], function() {
 
 
     Route::group(['prefix' => 'cart/{product_id}'], function() {
-        Route::get('increase', 'CartController@increase');
-        Route::get('decrease', 'CartController@decrease');
-        Route::get('remove', 'CartController@remove');
+        Route::post('increase', 'CartController@increase');
+        Route::post('decrease', 'CartController@decrease');
+        Route::post('remove', 'CartController@remove');
     });
+
+    Route::put('cart/shipping', 'CartController@shipping');
+
 
 });

@@ -3570,16 +3570,16 @@
         },
         {
             "name": "yaro/apidocs",
-            "version": "0.3.3",
+            "version": "0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Cherry-Pie/ApiDocs.git",
-                "reference": "25c9ee4a0126bcb63b3a237858b1c96a37656de8"
+                "reference": "237e1e5b7ab9c13f1c10245b08170cc3f5344336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Cherry-Pie/ApiDocs/zipball/25c9ee4a0126bcb63b3a237858b1c96a37656de8",
-                "reference": "25c9ee4a0126bcb63b3a237858b1c96a37656de8",
+                "url": "https://api.github.com/repos/Cherry-Pie/ApiDocs/zipball/237e1e5b7ab9c13f1c10245b08170cc3f5344336",
+                "reference": "237e1e5b7ab9c13f1c10245b08170cc3f5344336",
                 "shasum": ""
             },
             "require": {
@@ -3610,7 +3610,7 @@
                 "documentation",
                 "laravel"
             ],
-            "time": "2017-09-10T09:49:15+00:00"
+            "time": "2017-09-22T11:41:25+00:00"
         },
         {
             "name": "yaro/presenter",

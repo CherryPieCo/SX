@@ -2,7 +2,10 @@
 
 namespace App;
 
+use App\Models\Shop\Order;
 use App\Models\Shop\Product;
+use App\Models\Shop\Cart;
+use App\Models\User\Address;
 use App\Presenters\SpecialistPresenter;
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,6 +50,22 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * `phone` mutator.
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = '+' . preg_replace('~[^\d]~', '', $value);
+    }
+
+    /**
+     * `phone_extra` mutator.
+     */
+    public function setPhoneExtraAttribute($value)
+    {
+        $this->attributes['phone_extra'] = '+' . preg_replace('~[^\d]~', '', $value);
     }
 
     /**
@@ -156,6 +175,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Product::class, 'user_favourite_products');
     }
 
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -163,7 +192,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTIdentifier()
     {
-        return 'id';
+        return $this->id;
     }
 
     /**

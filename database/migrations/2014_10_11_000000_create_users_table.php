@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('phone', 22)->unique();
-            $table->string('phone_extra')->nullable();
+            $table->string('phone_extra')->nullable(); // TODO: remove?
 
             $table->string('password_reset_token', 16)->unique()->nullable();
 

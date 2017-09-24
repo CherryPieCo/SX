@@ -28,5 +28,15 @@
         "id": 2892647586,
         "enabled": true,
         "order": 9001
+    },
+    "User": {
+        "basename": "User",
+        "name": "User",
+        "slug": "user",
+        "version": "1.0",
+        "description": "This is the description for the User module.",
+        "id": 2375276105,
+        "enabled": true,
+        "order": 9001
     }
 }

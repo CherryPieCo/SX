@@ -20,9 +20,8 @@ class CartController extends ApiController
     {
         $cart = auth()->user()->cart();
         $cart->add($request->get('product_id'), $request->get('qty', 1));
-        $products = $cart->products;
 
-        return $this->success(compact('products'));
+        return $this->success(compact('cart'));
     }
 
     /**
@@ -35,9 +34,8 @@ class CartController extends ApiController
     {
         $cart = auth()->user()->cart();
         $cart->remove($request->get('product_id'), $request->get('qty', 1));
-        $products = $cart->products;
 
-        return $this->success(compact('products'));
+        return $this->success(compact('cart'));
     }
 
     /**
@@ -49,9 +47,21 @@ class CartController extends ApiController
     public function content()
     {
         $cart = auth()->user()->cart();
-        $products = $cart->products;
 
-        return $this->success(compact('products'));
+        return $this->success(compact('cart'));
+    }
+
+    /**
+     * Set shipping.
+     *
+     * @param string $shipping_method
+     */
+    public function shipping(SetShippingRequest $request)
+    {
+        $cart = auth()->user()->cart();
+        $cart->setShipping($request->get('shipping_method'));
+
+        return $this->success(compact('cart'));
     }
 
 }

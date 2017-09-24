@@ -2,22 +2,29 @@
 
 namespace App\Models\Shop;
 
+use App\Models\Shop\Cart\CartInterface;
 use App\Models\Shop\Cart\CartItem;
-use Yaro\Presenter\PresenterTrait;
-use App\Presenters\ProductPresenter;
-use JWTAuth;
-use Image;
+use App\Models\Shop\Shipping\CourierShipping;
+use App\Models\Shop\Shipping\NovaPostShipping;
+use App\Models\Shop\Shipping\PickupShipping;
+use App\Presenters\Shop\CartPresenter;
 use Illuminate\Database\Eloquent\Model;
+use Yaro\Presenter\PresenterTrait;
 
-class Cart extends Model
+class Cart extends Model implements CartInterface
 {
 
+    use PresenterTrait;
+
     protected $table = 'shopping_cart';
+
+    protected $presenter = CartPresenter::class;
 
     protected $fillable = [
         'instance',
         'user_id',
         'products',
+        'shipping_method',
     ];
 
     public function add($product, $qty = 1)
@@ -66,7 +73,7 @@ class Cart extends Model
         return collect($collection);
     } // end products
 
-    public function total()
+    public function subtotal()
     {
         $sum = 0;
         foreach ($this->products as $cartItem) {
@@ -74,6 +81,30 @@ class Cart extends Model
         }
 
         return $sum;
+    }
+
+    public function total()
+    {
+        return $this->subtotal() + $this->shipping()->total();
+    }
+
+    public function shipping()
+    {
+        switch ($this->shipping_method) {
+            case 'courier':
+                return new CourierShipping($this);
+            case 'novapost':
+                return new NovaPostShipping($this);
+            case 'pickup':
+            default:
+                return new PickupShipping($this);
+        }
+    }
+
+    public function setShipping($method)
+    {
+        $this->shipping_method = $method;
+        $this->save();
     }
 
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Auth\Http\Requests;
+namespace App\Modules\User\Http\Requests\Personal;
 
 use App\Http\Requests\ApiRequest;
 
-class RegisterClientRequest extends ApiRequest
+class UpdateRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,10 +30,8 @@ class RegisterClientRequest extends ApiRequest
             'salon_title' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string',
-            'phone' => 'required|unique_phone:users,phone',
-            'phone_extra' => 'required|string', // TODO: phone_extra
-            'email' => 'required|email|unique:users,email',
-            'certificate_image' => 'required|image',
+            'phone' => 'required|unique_phone:users,phone,id,'. $this->user()->id,
+            'password' => 'confirmed',
         ];
     }
 }
